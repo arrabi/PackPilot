@@ -1,0 +1,36 @@
+name: Operational alert rehearsal
+on:
+  workflow_dispatch:
+    inputs:
+      send_authorized_test_alerts:
+        description: Send three planned tests to the two recovery administrators (requires explicit owner authorization)
+        type: boolean
+        default: false
+permissions:
+  contents: read
+jobs:
+  alerts:
+    if: github.actor == 'YOUR_GITHUB_OWNER' && github.ref == 'refs/heads/main'
+    environment: production-backups
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - run: pip install -r scripts/release/requirements.txt
+      - name: Rehearse isolated failure detection and optional real alert delivery
+        env:
+          BREVO_API_KEY: ${{ secrets.BREVO_API_KEY }}
+          PACK99_FROM_EMAIL: admin@example.test
+          SEND_TEST_ALERTS: ${{ inputs.send_authorized_test_alerts }}
+        run: |
+          args=()
+          if [ "$SEND_TEST_ALERTS" = 'true' ]; then args+=(--send-authorized-test-alerts); fi
+          python scripts/release/rehearse-alerts.py "${args[@]}"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: alert-rehearsal-${{ github.run_id }}
+          path: alert-rehearsal.json
+          retention-days: 7

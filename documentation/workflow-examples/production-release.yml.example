@@ -1,0 +1,160 @@
+name: Approved production release
+on:
+  workflow_dispatch:
+    inputs:
+      commit:
+        description: Owner-approved full commit SHA tested on staging
+        required: true
+        type: string
+      staging_run:
+        description: Successful Staging integration run ID for this candidate/schema
+        required: true
+        type: string
+      rollback:
+        description: Roll back to the previous known-good application; keep database migrations
+        type: boolean
+        default: false
+      resume_operation:
+        description: Unfinished operation ID to resume with the same approved commit (blank starts a new operation)
+        required: false
+        type: string
+      test_failure_notification:
+        description: Planned alert-only failure test; production deployment is forcibly skipped
+        type: boolean
+        default: false
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: pack99-production-operations
+  cancel-in-progress: false
+jobs:
+  validate:
+    if: >-
+      (vars.PACK99_RELEASE_SYSTEM_ENABLED == 'true' || inputs.test_failure_notification) &&
+      github.repository == 'YOUR_GITHUB_OWNER/YOUR_GITHUB_REPOSITORY' && github.actor == 'YOUR_GITHUB_OWNER' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Planned alert-only failure before any deployment validation
+        if: inputs.test_failure_notification
+        run: |
+          echo '::error::PLANNED notification-path rehearsal. Production deployment is disabled for this run.'
+          exit 1
+      - uses: actions/checkout@v5
+        with:
+          ref: ${{ inputs.commit }}
+          fetch-depth: 0
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Validate owner-approved source
+        env:
+          APPROVED_SHA: ${{ inputs.commit }}
+        run: |
+          test "$(git rev-parse HEAD)" = "$APPROVED_SHA"
+          git merge-base --is-ancestor HEAD origin/main
+          npm ci
+          npm run check
+      - uses: actions/upload-artifact@v4
+        with:
+          name: approved-website-${{ inputs.commit }}
+          path: auth-ui/dist
+          if-no-files-found: error
+          retention-days: 7
+  production:
+    needs: validate
+    if: ${{ !inputs.test_failure_notification }}
+    environment: production
+    permissions:
+      contents: write
+      actions: read
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          path: controller
+      - uses: actions/checkout@v5
+        with:
+          ref: ${{ inputs.commit }}
+          path: candidate
+          fetch-depth: 0
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - run: pip install -r controller/scripts/release/requirements.txt
+      - name: Install PostgreSQL 17 client
+        run: |
+          sudo install -d /usr/share/postgresql-common/pgdg
+          curl -fsSL https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo tee /usr/share/postgresql-common/pgdg/apt.postgresql.org.asc >/dev/null
+          . /etc/os-release
+          echo "deb [signed-by=/usr/share/postgresql-common/pgdg/apt.postgresql.org.asc] https://apt.postgresql.org/pub/repos/apt $VERSION_CODENAME-pgdg main" | sudo tee /etc/apt/sources.list.d/pgdg.list >/dev/null
+          sudo apt-get update -qq
+          sudo apt-get install -y postgresql-client-17
+          echo /usr/lib/postgresql/17/bin >> "$GITHUB_PATH"
+      - name: Install Supabase database CA for verified TLS
+        run: |
+          ca_file="$RUNNER_TEMP/pack99-supabase-ca-2021.crt"
+          curl --fail --silent --show-error --proto '=https' --tlsv1.2 'https://supabase-downloads.s3-ap-southeast-1.amazonaws.com/prod/ssl/prod-ca-2021.crt' --output "$ca_file"
+          openssl x509 -in "$ca_file" -noout -checkend 86400
+          openssl x509 -in "$ca_file" -noout -ext basicConstraints | grep -q 'CA:TRUE'
+          echo "PGSSLROOTCERT=$ca_file" >> "$GITHUB_ENV"
+      - run: npm ci --ignore-scripts
+        working-directory: candidate
+      - uses: actions/download-artifact@v4
+        with:
+          name: approved-website-${{ inputs.commit }}
+          path: candidate/auth-ui/dist
+      - name: Deploy integrated approved release or previous application
+        env:
+          APPROVED_SHA: ${{ inputs.commit }}
+          STAGING_RUN: ${{ inputs.staging_run }}
+          ROLLBACK: ${{ inputs.rollback }}
+          RESUME_OPERATION: ${{ inputs.resume_operation }}
+          GH_TOKEN: ${{ github.token }}
+          SUPABASE_ACCESS_KEY: ${{ secrets.SUPABASE_ACCESS_KEY }}
+          PRODUCTION_DATABASE_URL: ${{ secrets.PRODUCTION_DATABASE_URL }}
+          PRODUCTION_SUPABASE_URL: https://aaaaaaaaaaaaaaaaaaaa.supabase.co
+          PRODUCTION_SUPABASE_SERVICE_KEY: ${{ secrets.PRODUCTION_SUPABASE_SERVICE_KEY }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          R2_ENDPOINT: ${{ secrets.R2_ENDPOINT }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          WRANGLER_SEND_METRICS: 'false'
+        run: |
+          args=()
+          if [ "$ROLLBACK" = 'true' ]; then args+=(--rollback); fi
+          if [ -n "$RESUME_OPERATION" ]; then args+=(--resume-operation "$RESUME_OPERATION"); fi
+          python controller/scripts/release/deploy.py --environment production --candidate-root candidate --commit "$APPROVED_SHA" --staging-run "$STAGING_RUN" "${args[@]}"
+  notify-failure:
+    needs: [validate, production]
+    if: always() && contains(needs.*.result, 'failure')
+    environment: production-backups
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - run: pip install -r scripts/release/requirements.txt
+      - name: Alert both recovery administrators
+        env:
+          BREVO_API_KEY: ${{ secrets.BREVO_API_KEY }}
+          PACK99_FROM_EMAIL: admin@example.test
+          TEST_FAILURE_NOTIFICATION: ${{ inputs.test_failure_notification }}
+        run: |
+          PYTHONPATH=scripts/release python - <<'PY'
+          import os
+          from backup import alert
+          if os.environ.get('TEST_FAILURE_NOTIFICATION') == 'true':
+              alert('PLANNED WORKFLOW ALERT TEST. Validation was deliberately stopped before any production operation, and the deployment job was forcibly skipped. No production failure was induced and no parent email was sent. Please confirm this test message reached both recovery administrators.', subject='PackPilot PLANNED TEST: workflow failure alert')
+          else:
+              alert('The PackPilot approved production workflow failed. Review its GitHub Actions run and private operation metadata before resuming. Maintenance and recovery pins may remain active. No private records or credentials are included in this alert.')
+          PY

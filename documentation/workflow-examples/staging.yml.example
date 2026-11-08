@@ -1,0 +1,94 @@
+name: Staging integration
+on:
+  pull_request:
+    types: [labeled]
+    branches: [main]
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      commit:
+        description: Exact commit to test for rollback (blank uses main)
+        required: false
+        type: string
+      rollback:
+        description: Keep newer migrations while testing the previous application
+        type: boolean
+        default: false
+      backend_commit:
+        description: Recorded operational backend commit for a rollback (blank uses the application commit)
+        required: false
+        type: string
+permissions:
+  contents: read
+concurrency:
+  group: packpilot-staging-operations
+  cancel-in-progress: false
+jobs:
+  deploy:
+    if: >-
+      (github.event_name == 'push' && github.ref == 'refs/heads/main') ||
+      (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main') ||
+      (github.event_name == 'pull_request' && github.repository == 'YOUR_GITHUB_OWNER/YOUR_GITHUB_REPOSITORY' &&
+       github.actor == 'YOUR_GITHUB_OWNER' && github.event.action == 'labeled' &&
+       github.event.label.name == 'rehearse-staging' &&
+       github.event.pull_request.head.repo.full_name == github.repository)
+    environment: staging
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          path: controller
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - uses: actions/checkout@v5
+        with:
+          ref: ${{ inputs.commit || github.event.pull_request.head.sha || github.sha }}
+          path: candidate
+          fetch-depth: 0
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - run: pip install -r controller/scripts/release/requirements.txt
+      - name: Validate candidate and build staging
+        working-directory: candidate
+        env:
+          VITE_SUPABASE_URL: ${{ vars.SUPABASE_URL }}
+          VITE_SUPABASE_PUBLISHABLE_KEY: ${{ vars.SUPABASE_PUBLISHABLE_KEY }}
+          APPROVED_SHA: ${{ inputs.commit || github.event.pull_request.head.sha || github.sha }}
+          EVENT_NAME: ${{ github.event_name }}
+          ROLLBACK: ${{ inputs.rollback }}
+          BACKEND_COMMIT: ${{ inputs.backend_commit }}
+        run: |
+          test "$(git rev-parse HEAD)" = "$APPROVED_SHA"
+          if [ "$EVENT_NAME" = 'pull_request' ]; then
+            git merge-base --is-ancestor origin/main HEAD
+          else
+            git merge-base --is-ancestor HEAD origin/main
+          fi
+          npm ci
+          npm run check
+          npm run build:auth -- --mode staging
+          python ../controller/scripts/release/verify-staging-build.py
+          echo "CANDIDATE_SHA=$(git rev-parse HEAD)" >> "$GITHUB_ENV"
+      - name: Deploy the integrated staging candidate
+        env:
+          SUPABASE_ACCESS_KEY: ${{ secrets.SUPABASE_ACCESS_KEY }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
+          WRANGLER_SEND_METRICS: 'false'
+          ROLLBACK: ${{ inputs.rollback }}
+          BACKEND_COMMIT: ${{ inputs.backend_commit }}
+        run: |
+          args=()
+          if [ "$ROLLBACK" = 'true' ]; then args+=(--rollback); fi
+          if [ -n "$BACKEND_COMMIT" ]; then args+=(--backend-commit "$BACKEND_COMMIT"); fi
+          python controller/scripts/release/deploy.py --environment staging --candidate-root candidate --commit "$CANDIDATE_SHA" --evidence staging.json "${args[@]}"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: staging-evidence-${{ env.CANDIDATE_SHA }}
+          path: staging.json
+          retention-days: 14

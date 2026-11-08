@@ -1,0 +1,22 @@
+project_id = "packpilot"
+
+[functions.staging-auth-email]
+# Staging only. The handler verifies Standard Webhooks signatures before parsing.
+verify_jwt = false
+entrypoint = "./functions/staging-auth-email/index.ts"
+
+[functions.scouts-mcp]
+# Discovery requests have no JWT. Application validates tokens before all MCP calls.
+verify_jwt = false
+entrypoint = "./functions/scouts-mcp/index.ts"
+
+
+[functions.parent-notifications]
+# Only the private scheduler credential is accepted by the application handler.
+verify_jwt = false
+entrypoint = "./functions/parent-notifications/index.ts"
+
+[functions.notification-links]
+# An opaque email reference records a signal; it never authenticates a parent.
+verify_jwt = false
+entrypoint = "./functions/notification-links/index.ts"

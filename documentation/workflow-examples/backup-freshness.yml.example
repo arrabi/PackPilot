@@ -1,0 +1,28 @@
+name: Independent backup freshness
+on:
+  schedule:
+    - cron: '45 10 * * *'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  check:
+    if: vars.PACK99_BACKUPS_ENABLED == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment: production-backups
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - run: pip install -r scripts/release/requirements.txt
+      - name: Check independently of backup job success
+        env:
+          CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
+          R2_ENDPOINT: ${{ secrets.R2_ENDPOINT }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          BREVO_API_KEY: ${{ secrets.BREVO_API_KEY }}
+          PACK99_FROM_EMAIL: admin@example.test
+        run: python scripts/release/backup.py freshness --alert-on-failure

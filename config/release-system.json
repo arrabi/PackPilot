@@ -1,0 +1,9 @@
+{
+  "production_project": "aaaaaaaaaaaaaaaaaaaa",
+  "staging_project": "bbbbbbbbbbbbbbbbbbbb",
+  "production_pages": "packpilot-site",
+  "staging_pages": "packpilot-staging",
+  "staging_origin": "https://staging.packpilot.example",
+  "staging_legacy_origin": "https://packpilot-staging.pages.dev",
+  "backup_bucket": "packpilot-production-backups"
+}

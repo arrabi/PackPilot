@@ -1,0 +1,41 @@
+{
+  "name": "packpilot",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "test": "node --import tsx --test --experimental-test-isolation=none --test-concurrency=1 tests/*.test.ts",
+    "typecheck": "tsc --noEmit",
+    "check": "npm run typecheck && npm test && npm run check:edge && npm run build:auth",
+    "check:edge": "deno check --config supabase/functions/deno.json supabase/functions/scouts-mcp/index.ts supabase/functions/parent-notifications/index.ts supabase/functions/notification-links/index.ts supabase/functions/staging-auth-email/index.ts",
+    "verify:import": "tsx scripts/verify-import.ts",
+    "dev:auth": "vite --host 127.0.0.1 auth-ui --config auth-ui/vite.config.ts",
+    "build:auth": "npm run generate:policies && vite build auth-ui --config auth-ui/vite.config.ts",
+    "deploy:auth": "node --import tsx scripts/deploy-auth.ts",
+    "dev:mcp": "tsx scripts/serve.ts",
+    "smoke": "tsx scripts/smoke.ts",
+    "test:portal": "node --import tsx --test tests/portal.test.ts",
+    "generate:policies": "node --import tsx scripts/generate-policies.ts",
+    "test:participation": "node --import tsx --test --experimental-test-isolation=none --test-concurrency=1 tests/community.test.ts tests/community-ui.test.ts tests/notification-worker.test.ts tests/home.test.ts"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/server": "2.3.1",
+    "@supabase/supabase-js": "2.118.0",
+    "libphonenumber-js": "^1.13.15",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@electric-sql/pglite": "^0.3.14",
+    "@types/node": "^24.0.0",
+    "deno": "2.9.6",
+    "happy-dom": "^21.0.4",
+    "supabase": "2.121.0",
+    "tsx": "^4.20.0",
+    "typescript": "^5.9.0",
+    "vite": "^7.1.0",
+    "wrangler": "4.151.3"
+  }
+}

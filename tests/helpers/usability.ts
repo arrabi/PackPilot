@@ -1,0 +1,3 @@
+import{backlogFixture}from'./backlog.ts';
+export const priorUsabilityMigrations=['20261102211000_admin_exports_retention.sql','20261102212000_friendly_notifications_engagement.sql','20261102213000_workspace_views.sql','20261102214000_engagement_policy_version.sql','20261102215000_backlog_guard_refinements.sql','20261102220000_multi_item_volunteer_signups.sql'];
+export const usabilityFixture=(extra:string[]=['20261103001000_event_meeting_usability.sql','20261103002000_volunteer_followthrough.sql','20261103003000_access_onboarding.sql','20261103004000_usability_projections.sql','20261103005000_parent_photo_actions.sql'])=>backlogFixture([...priorUsabilityMigrations,...extra]);

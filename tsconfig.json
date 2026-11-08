@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "target": "ES2023",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "allowImportingTsExtensions": true,
+    "strict": true,
+    "noEmit": true,
+    "lib": ["ES2023", "DOM", "DOM.Iterable", "DOM.AsyncIterable"],
+    "types": ["node", "vite/client"],
+    "skipLibCheck": true
+  },
+  "include": ["supabase/functions/_shared/**/*.ts", "auth-ui/**/*.ts", "scripts/**/*.ts", "tests/**/*.ts"]
+}

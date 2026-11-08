@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head><script type="module" src="/domain-transition.ts"></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="referrer" content="no-referrer" />
+    <title>PackPilot · Connect your assistant</title>
+    <link rel="icon" type="image/svg+xml" href="../resources/packpilot-logo.svg" />
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <main>
+      <img class="pack-logo" src="../resources/packpilot-logo.svg" alt="PackPilot" width="580" height="545" />
+      <p class="eyebrow">PACKPILOT · LEADER ACCESS</p>
+      <h1>Connect your assistant.</h1>
+      <p class="intro">Use your approved Google account to connect your assistant to PackPilot scout information.</p>
+      <p id="status" role="status" aria-live="polite">Checking your connection…</p>
+      <section id="details" hidden>
+        <dl><dt>Signed in as</dt><dd id="email"></dd><dt>Requesting application</dt><dd id="client"></dd><dt>Return address</dt><dd id="redirect"></dd><dt>Requested identity access</dt><dd id="scopes"></dd></dl>
+        <p>This connection can read scout and parent contacts, birth dates, and registration information. Roster records remain read-only. If an administrator has separately granted recording permission, this connection can also record activities, attendance, registration updates, adventure progress, awards, badge delivery, equipment distributions, loans, returns, purchases, and payment records. Only approve an application you recognize.</p>
+      </section>
+      <div class="actions">
+        <button id="login" hidden>Continue with Google</button>
+        <button id="approve" hidden>Allow access</button>
+        <button id="deny" class="secondary" hidden>Deny</button>
+        <button id="logout" class="secondary" hidden>Sign out</button>
+      </div>
+      <footer>Access is granted by the pack administrator. Roster data comes from a one-time snapshot. <a href="/">Open the leader fieldbook</a>.</footer>
+    </main>
+    <script type="module" src="/main.ts"></script>
+  <footer class="policy-footer"><a href="/terms">Terms of Use</a><a href="/privacy">Privacy Policy</a></footer>
+</body>
+</html>

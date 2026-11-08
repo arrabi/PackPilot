@@ -1,0 +1,57 @@
+name: Release safeguards
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  recovery-behavior:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - run: pip install -r scripts/release/requirements.txt
+      - run: sudo apt-get update -qq && sudo apt-get install -y socat
+      - name: Test synthetic Auth and permissions with real services
+        run: python tests/integration/recovery_behavior.py
+      - name: Remove isolated test containers
+        if: always()
+        run: |
+          docker --host=unix:///var/run/docker.sock rm -fv pack99-recovery-rest pack99-recovery-auth pack99-backup-rehearsal 2>/dev/null || true
+  staging-build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '22'
+          cache: npm
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - run: npm ci
+      - run: pip install -r scripts/requirements.txt -r scripts/release/requirements.txt
+      - run: python -m unittest discover -s tests -p 'test_*.py'
+      - name: Reject staging build without isolated configuration
+        run: |
+          if npm run build:auth -- --mode staging > /tmp/staging-rejection.log 2>&1; then
+            echo '::error::Staging build accepted missing configuration'
+            exit 1
+          fi
+          grep -q 'Staging requires an explicit isolated Supabase URL' /tmp/staging-rejection.log
+      - name: Build staging using synthetic public configuration
+        env:
+          VITE_SUPABASE_URL: https://abcdefghijklmnopqrst.supabase.co
+          VITE_SUPABASE_PUBLISHABLE_KEY: sb_publishable_synthetic
+        run: npm run build:auth -- --mode staging
+      - run: python scripts/release/verify-staging-build.py
+      # Validation only: this workflow has no secrets and publishes no build.

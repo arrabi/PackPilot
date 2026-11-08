@@ -1,0 +1,44 @@
+/* One back-navigation treatment for links, wizard steps and review dialogs. */
+.back-button.back-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  box-sizing: border-box;
+  min-height: 48px;
+  min-width: 104px;
+  max-width: 100%;
+  margin: 0;
+  padding: 10px 18px;
+  border: 1.5px solid #144946;
+  border-radius: 12px;
+  background: #fffef9;
+  color: #144946;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.25;
+  text-align: left;
+  text-decoration: none;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: #dbe8e2;
+}
+.back-button.back-button:hover { background: #edf3ef; }
+.back-button.back-button:active { background: #deebe4; }
+.back-button.back-button:focus-visible {
+  outline: 3px solid #b77e24;
+  outline-offset: 3px;
+}
+.back-button.back-button:disabled {
+  opacity: .5;
+  cursor: not-allowed;
+}
+.back-button-icon {
+  flex: 0 0 24px;
+  width: 24px;
+  height: 24px;
+}
+.back-link.back-button { margin-bottom: 22px; }

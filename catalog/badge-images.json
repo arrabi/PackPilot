@@ -1,0 +1,893 @@
+{
+  "source": "Scouting America public website; URL references only, no image files distributed.",
+  "badges": [
+    {
+      "name": "Bobcat",
+      "rank": "lion",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/bobcat-lion/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/01/2023_2024_loops_pins_Lion_Bobcat.jpg"
+    },
+    {
+      "name": "Fun on the Run",
+      "rank": "lion",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/fun-on-the-run/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/01/2023_2024_loops_pins_Fun_On_The_Run.jpg"
+    },
+    {
+      "name": "King of the Jungle",
+      "rank": "lion",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/king-of-the-jungle/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/01/2023_2024_loops_pins_King_of_The_Jungle.jpg"
+    },
+    {
+      "name": "Lion\u2019s Pride",
+      "rank": "lion",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/lions-pride/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/01/2023_2024_loops_pins_Lions_Pride.jpg"
+    },
+    {
+      "name": "Lion\u2019s Roar",
+      "rank": "lion",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/lions-roar/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/01/2023_2024_loops_pins_Lions_Roar.jpg"
+    },
+    {
+      "name": "Mountain Lion",
+      "rank": "lion",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/mountain-lion/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/01/2023_2024_loops_pins_Mountain_Lion.jpg"
+    },
+    {
+      "name": "Archery Lion",
+      "rank": "lion",
+      "source_url": "https://www.scouting.org/wp-content/uploads/2024/05/2024_Cub-Scout_Archery-Adventure-Lesson-Plan_051624.pdf#page=1",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/08/2023_2024_loops_pins_Archery.jpg"
+    },
+    {
+      "name": "Build It Up, Knock It Down",
+      "rank": "lion",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/build-it-up-knock-it-down/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/03/2023_2024_loops_pins_Build_It_Up_Knock_It_Down-1.jpg"
+    },
+    {
+      "name": "Champions for Nature Lion",
+      "rank": "lion",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/champions-for-nature-lion/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/03/2023_2024_loops_pins_Champions_of_Nature-1.jpg"
+    },
+    {
+      "name": "Count On Me",
+      "rank": "lion",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/count-on-me/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/03/2023_2024_loops_pins_Count_On_Me-1.jpg"
+    },
+    {
+      "name": "Everyday Tech",
+      "rank": "lion",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/everyday-tech/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/03/2023_2024_loops_pins_Everyday_Tech-1.jpg"
+    },
+    {
+      "name": "Gizmos and Gadgets",
+      "rank": "lion",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/gizmos-and-gadgets/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/01/2023_2024_loops_pins_Gizmos_and_Gadgets.jpg"
+    },
+    {
+      "name": "Go Fish",
+      "rank": "lion",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/go-fish/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/01/2023_2024_loops_pins_Go_Fish.jpg"
+    },
+    {
+      "name": "I\u2019ll Do It Myself",
+      "rank": "lion",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/ill-do-it-myself/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/01/2023_2024_loops_pins_Ill_Do_It_Myself.jpg"
+    },
+    {
+      "name": "Let\u2019s Camp Lion",
+      "rank": "lion",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/lets-camp-lion/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/01/2023_2024_loops_pins_Lets_Camp-1.jpg"
+    },
+    {
+      "name": "On a Roll",
+      "rank": "lion",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/on-a-roll/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/01/2023_2024_loops_pins_On_a_Roll.jpg"
+    },
+    {
+      "name": "On Your Mark",
+      "rank": "lion",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/on-your-mark/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/01/2023_2024_loops_pins_On_Your_Mark.jpg"
+    },
+    {
+      "name": "Pick My Path",
+      "rank": "lion",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/pick-my-path-lion/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/03/2023_2024_loops_pins_Pick_My_Path.jpg"
+    },
+    {
+      "name": "Race Time Lion",
+      "rank": "lion",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/race-time-lion/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/01/2023_2024_loops_pins_Race_Time-1.jpg"
+    },
+    {
+      "name": "Ready, Set, Grow",
+      "rank": "lion",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/ready-set-grow/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/01/2023_2024_loops_pins_Ready_Set_Grow.jpg"
+    },
+    {
+      "name": "Slingshot",
+      "rank": "lion",
+      "source_url": "https://www.scouting.org/wp-content/uploads/2024/05/2024_Cub-Scout_Slingshot-Adventure-Lesson-Plan_051624.pdf#page=1",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/08/2023_2024_loops_pins_Slingshot.jpg"
+    },
+    {
+      "name": "Time to Swim",
+      "rank": "lion",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/time-to-swim/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/01/2023_2024_loops_pins_Time_to_Swim.jpg"
+    },
+    {
+      "name": "Bobcat",
+      "rank": "tiger",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/bobcat-tiger/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/04/2023_2024_loops_pins_Tiger-Bobcat.jpg"
+    },
+    {
+      "name": "Team Tiger",
+      "rank": "tiger",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/team-tiger/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/04/2023_2024_loops_pins_Team_Tiger.jpg"
+    },
+    {
+      "name": "Tiger Bites",
+      "rank": "tiger",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/tiger-bites/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/04/2023_2024_loops_pins_Tiger_Bites.jpg"
+    },
+    {
+      "name": "Tiger Circles",
+      "rank": "tiger",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/tiger-circles/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/04/2023_2024_loops_pins_Tiger_Circles.jpg"
+    },
+    {
+      "name": "Tigers in the Wild",
+      "rank": "tiger",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/tigers-in-the-wild/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/04/2023_2024_loops_pins_Tigers_in_the_Wild.jpg"
+    },
+    {
+      "name": "Tiger\u2019s Roar",
+      "rank": "tiger",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/tigers-roar/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/04/2023_2024_loops_pins_Tigers-Roar.jpg"
+    },
+    {
+      "name": "Archery Tiger",
+      "rank": "tiger",
+      "source_url": "https://www.scouting.org/wp-content/uploads/2024/05/2024_Cub-Scout_Archery-Adventure-Lesson-Plan_051624.pdf#page=1",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/08/2023_2024_loops_pins_Archery-1.jpg"
+    },
+    {
+      "name": "BB Guns",
+      "rank": "tiger",
+      "source_url": "https://www.scouting.org/wp-content/uploads/2024/05/2024_Cub-Scout_BB-Adventure-Lesson-Plan_051724.pdf#page=1",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/08/2023_2024_loops_pins_BB_Guns.jpg"
+    },
+    {
+      "name": "Champions for Nature Tiger",
+      "rank": "tiger",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/champions-for-nature-tiger/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/01/2023_2024_loops_pins_Champions_of_Nature.jpg"
+    },
+    {
+      "name": "Curiosity, Intrigue, and Magical Mysteries",
+      "rank": "tiger",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/curiosity-intrigue-and-magical-mysteries/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/01/2023_2024_loops_pins_Curiosity_Intrigue_and_Magical_Mysteries.jpg"
+    },
+    {
+      "name": "Designed by Tiger",
+      "rank": "tiger",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/designed-by-tiger/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/01/2023_2024_loops_pins_Designed_by_Tiger.jpg"
+    },
+    {
+      "name": "Fish On",
+      "rank": "tiger",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/fish-on/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/01/2023_2024_loops_pins_Fish_On.jpg"
+    },
+    {
+      "name": "Floats and Boats",
+      "rank": "tiger",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/floats-and-boats/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/01/2023_2024_loops_pins_Floats_and_Boats.jpg"
+    },
+    {
+      "name": "Good Knights",
+      "rank": "tiger",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/good-knights/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/01/2023_2024_loops_pins_Good_Knights.jpg"
+    },
+    {
+      "name": "Let\u2019s Camp Tiger",
+      "rank": "tiger",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/lets-camp-tiger/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/01/2023_2024_loops_pins_Lets_Camp.jpg"
+    },
+    {
+      "name": "Race Time Tiger",
+      "rank": "tiger",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/race-time-tiger/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/01/2023_2024_loops_pins_Race_Time.jpg"
+    },
+    {
+      "name": "Rolling Tigers",
+      "rank": "tiger",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/rolling-tigers/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/01/2023_2024_loops_pins_Rolling_Tigers.jpg"
+    },
+    {
+      "name": "Safe and Smart",
+      "rank": "tiger",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/safe-and-smart/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/01/2023_2024_loops_pins_Tiger_Safe_and_Smart.jpg"
+    },
+    {
+      "name": "Sky is the Limit",
+      "rank": "tiger",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/sky-is-the-limit/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/01/2023_2024_loops_pins_Sky_is_the_Limit.jpg"
+    },
+    {
+      "name": "Slingshot",
+      "rank": "tiger",
+      "source_url": "https://www.scouting.org/wp-content/uploads/2024/05/2024_Cub-Scout_Slingshot-Adventure-Lesson-Plan_051624.pdf#page=1",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/08/2023_2024_loops_pins_Slingshot-1.jpg"
+    },
+    {
+      "name": "Stories in Shapes",
+      "rank": "tiger",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/stories-in-shapes/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/01/2023_2024_loops_pins_Stories_in_Shapes.jpg"
+    },
+    {
+      "name": "Summertime Fun Tiger",
+      "rank": "tiger",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/summertime-fun-tiger/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/01/2023_2024_loops_pins_Summertime_Fun.jpg"
+    },
+    {
+      "name": "Tech All Around",
+      "rank": "tiger",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/tech-all-around/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/02/2023_2024_loops_pins_Tech_All_Around.jpg"
+    },
+    {
+      "name": "Tiger Tag",
+      "rank": "tiger",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/tiger-tag/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/01/2023_2024_loops_pins_Tigers_Tag.jpg"
+    },
+    {
+      "name": "Tiger-iffic!",
+      "rank": "tiger",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/tiger-iffic/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/01/2023_2024_loops_pins_Tiger_rrrrific.jpg"
+    },
+    {
+      "name": "Tigers in the Water",
+      "rank": "tiger",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/tigers-in-the-water/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/03/2023_2024_loops_pins_Tigers_in_the_Water.jpg"
+    },
+    {
+      "name": "Bobcat",
+      "rank": "wolf",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/bobcat-wolf/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/04/2023_2024_loops_pins_Wolf_Bobcat.jpg"
+    },
+    {
+      "name": "Council Fire",
+      "rank": "wolf",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/council-fire/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/04/2023_2024_loops_pins_Council_Fire.jpg"
+    },
+    {
+      "name": "Footsteps",
+      "rank": "wolf",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/footsteps/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/04/2023_2024_loops_pins_Footsteps.jpg"
+    },
+    {
+      "name": "Paws on the Path",
+      "rank": "wolf",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/paws-on-the-path/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/04/2023_2024_loops_pins_Paws_on_the_Path.jpg"
+    },
+    {
+      "name": "Running With the Pack",
+      "rank": "wolf",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/running-with-the-pack/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/04/2023_2024_loops_pins_Running_With_the_Pack.jpg"
+    },
+    {
+      "name": "Safety in Numbers",
+      "rank": "wolf",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/safety-in-numbers/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/04/2023_2024_loops_pins_Safety_in_Numbers.jpg"
+    },
+    {
+      "name": "A Wolf Goes Fishing",
+      "rank": "wolf",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/a-wolf-goes-fishing/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2023/11/2023_2024_loops_pins_A_Wolf_Goes_Fishing-1.jpg"
+    },
+    {
+      "name": "Adventures in Coins",
+      "rank": "wolf",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/adventures-in-coins/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/02/2023_2024_loops_pins_Adventures_in_Coins.jpg"
+    },
+    {
+      "name": "Air of the Wolf",
+      "rank": "wolf",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/air-of-the-wolf/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/02/2023_2024_loops_pins_Air_of_the_Wolf.jpg"
+    },
+    {
+      "name": "Archery Wolf",
+      "rank": "wolf",
+      "source_url": "https://www.scouting.org/wp-content/uploads/2024/05/2024_Cub-Scout_Archery-Adventure-Lesson-Plan_051624.pdf#page=1",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/08/2023_2024_loops_pins_Archery-2.jpg"
+    },
+    {
+      "name": "BB Guns",
+      "rank": "wolf",
+      "source_url": "https://www.scouting.org/wp-content/uploads/2024/05/2024_Cub-Scout_BB-Adventure-Lesson-Plan_051724.pdf#page=1",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/08/2023_2024_loops_pins_BB_Guns-1.jpg"
+    },
+    {
+      "name": "Champions for Nature Wolf",
+      "rank": "wolf",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/champions-for-nature-wolf/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/02/2023_2024_loops_pins_Champions_of_Nature.jpg"
+    },
+    {
+      "name": "Code of the Wolf",
+      "rank": "wolf",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/code-of-the-wolf/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/02/2023_2024_loops_pins_Code_of_the_Wolf.jpg"
+    },
+    {
+      "name": "Computing Wolves",
+      "rank": "wolf",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/computing-wolves/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2023/11/2023_2024_loops_pins_Computing_Wolves.jpg"
+    },
+    {
+      "name": "Cubs Who Care",
+      "rank": "wolf",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/cubs-who-care/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2023/11/2023_2024_loops_pins_Cubs_Who_Care.jpg"
+    },
+    {
+      "name": "Digging in the Past",
+      "rank": "wolf",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/digging-in-the-past/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2023/11/2023_2024_loops_pins_Digging_Into_the_Past.jpg"
+    },
+    {
+      "name": "Finding Your Way",
+      "rank": "wolf",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/finding-your-way/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2023/11/2023_2024_loops_pins_Finding_Your_Way.jpg"
+    },
+    {
+      "name": "Germs Alive!",
+      "rank": "wolf",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/germs-alive/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2023/11/2023_2024_loops_pins_Germs_Alive.jpg"
+    },
+    {
+      "name": "Let\u2019s Camp Wolf",
+      "rank": "wolf",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/lets-camp-wolf/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/02/2023_2024_loops_pins_Lets_Camp.jpg"
+    },
+    {
+      "name": "Paws for Water",
+      "rank": "wolf",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/paws-for-water/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2023/11/2023_2024_loops_pins_Paws_For_Water.jpg"
+    },
+    {
+      "name": "Paws of Skill",
+      "rank": "wolf",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/paws-of-skill/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2023/11/2023_2024_loops_pins_Paws_of_Skill.jpg"
+    },
+    {
+      "name": "Pedal With the Pack",
+      "rank": "wolf",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/pedal-with-the-pack/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2023/11/2023_2024_loops_pins_Pedal_With_the_Pack.jpg"
+    },
+    {
+      "name": "Race Time Wolf",
+      "rank": "wolf",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/race-time-wolf/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2023/11/2023_2024_loops_pins_Race_Time.jpg"
+    },
+    {
+      "name": "Slingshot",
+      "rank": "wolf",
+      "source_url": "https://www.scouting.org/wp-content/uploads/2024/05/2024_Cub-Scout_Slingshot-Adventure-Lesson-Plan_051624.pdf#page=1",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/08/2023_2024_loops_pins_Slingshot-2.jpg"
+    },
+    {
+      "name": "Spirit of the Water",
+      "rank": "wolf",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/spirit-of-the-water/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2023/11/2023_2024_loops_pins_Spirit_of_the_Water.jpg"
+    },
+    {
+      "name": "Summertime Fun Wolf",
+      "rank": "wolf",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/summertime-fun-wolf/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2023/11/2023_2024_loops_pins_Summertime_Fun.jpg"
+    },
+    {
+      "name": "Bear Habitat",
+      "rank": "bear",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/bear-habitat/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/02/2023_2024_loops_pins_Bear_Habitat.jpg"
+    },
+    {
+      "name": "Bear Strong",
+      "rank": "bear",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/bear-strong/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/02/2023_2024_loops_pins_Bear_Strong.jpg"
+    },
+    {
+      "name": "Bobcat",
+      "rank": "bear",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/bobcat-bear/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/01/2023_2024_loops_pins_Bear_Bobcat-1.jpg"
+    },
+    {
+      "name": "Fellowship",
+      "rank": "bear",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/fellowship/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/02/2023_2024_loops_pins_Fellowship.jpg"
+    },
+    {
+      "name": "Paws for Action",
+      "rank": "bear",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/paws-for-action/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/01/2023_2024_loops_pins_Paws_For_Action.jpg"
+    },
+    {
+      "name": "Standing Tall",
+      "rank": "bear",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/standing-tall/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/01/2023_2024_loops_pins_Standing_Tall.jpg"
+    },
+    {
+      "name": "A Bear Goes Fishing",
+      "rank": "bear",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/a-bear-goes-fishing/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/01/2023_2024_loops_pins_A_Bear_Goes_Fishing.jpg"
+    },
+    {
+      "name": "Archery Bear",
+      "rank": "bear",
+      "source_url": "https://www.scouting.org/wp-content/uploads/2024/05/2024_Cub-Scout_Archery-Adventure-Lesson-Plan_051624.pdf#page=1",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/08/2023_2024_loops_pins_Archery-3.jpg"
+    },
+    {
+      "name": "Balancing Bears",
+      "rank": "bear",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/balancing-bears/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/01/2023_2024_loops_pins_Balancing_Bears.jpg"
+    },
+    {
+      "name": "Baloo the Builder",
+      "rank": "bear",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/baloo-the-builder/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/01/2023_2024_loops_pins_Baloo_the_Builder.jpg"
+    },
+    {
+      "name": "BB Guns",
+      "rank": "bear",
+      "source_url": "https://www.scouting.org/wp-content/uploads/2024/05/2024_Cub-Scout_BB-Adventure-Lesson-Plan_051724.pdf#page=1",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/08/2023_2024_loops_pins_BB_Guns-2.jpg"
+    },
+    {
+      "name": "Bears Afloat",
+      "rank": "bear",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/bears-afloat/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/01/2023_2024_loops_pins_Bears_Afloat.jpg"
+    },
+    {
+      "name": "Bears on Bikes",
+      "rank": "bear",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/bears-on-bikes/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/01/2023_2024_loops_pins_Bears_on_Bikes.jpg"
+    },
+    {
+      "name": "Champions for Nature Bear",
+      "rank": "bear",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/champions-for-nature-bear/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/01/2023_2024_loops_pins_Champions_of_Nature-1.jpg"
+    },
+    {
+      "name": "Chef Tech",
+      "rank": "bear",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/chef-tech/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/01/2023_2024_loops_pins_Chef_Tech.jpg"
+    },
+    {
+      "name": "Critter Care",
+      "rank": "bear",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/critter-care/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/01/2023_2024_loops_pins_Critter_Care.jpg"
+    },
+    {
+      "name": "Forensics",
+      "rank": "bear",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/forensics/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/01/2023_2024_loops_pins_Forensics.jpg"
+    },
+    {
+      "name": "Let\u2019s Camp Bear",
+      "rank": "bear",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/lets-camp-bear/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/01/2023_2024_loops_pins_Lets_Camp-2.jpg"
+    },
+    {
+      "name": "Marble Madness",
+      "rank": "bear",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/marble-madness/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/01/2023_2024_loops_pins_Marble_Madness.jpg"
+    },
+    {
+      "name": "Race Time Bear",
+      "rank": "bear",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/race-time-bear/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/01/2023_2024_loops_pins_Race_Time-2.jpg"
+    },
+    {
+      "name": "Roaring Laughter",
+      "rank": "bear",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/roaring-laughter/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/01/2023_2024_loops_pins_Roaring_Laughter.jpg"
+    },
+    {
+      "name": "Salmon Run",
+      "rank": "bear",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/salmon-run/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/01/2023_2024_loops_pins_Salmon_Run.jpg"
+    },
+    {
+      "name": "Slingshot",
+      "rank": "bear",
+      "source_url": "https://www.scouting.org/wp-content/uploads/2024/05/2024_Cub-Scout_Slingshot-Adventure-Lesson-Plan_051624.pdf#page=1",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/08/2023_2024_loops_pins_Slingshot-3.jpg"
+    },
+    {
+      "name": "Summertime Fun Bear",
+      "rank": "bear",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/summertime-fun-bear/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/01/2023_2024_loops_pins_Summertime_Fun-1.jpg"
+    },
+    {
+      "name": "Super Science",
+      "rank": "bear",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/super-science/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/01/2023_2024_loops_pins_Super_Science.jpg"
+    },
+    {
+      "name": "Whittling",
+      "rank": "bear",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/whittling/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/01/2023_2024_loops_pins_Whittling.jpg"
+    },
+    {
+      "name": "Bobcat",
+      "rank": "webelos",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/bobcat-webelos/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/01/2023_2024_loops_pins_Webelos_Bobcat_edit.jpg"
+    },
+    {
+      "name": "My Community",
+      "rank": "webelos",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/my-community/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/01/2023_2024_loops_pins_My_Community.jpg"
+    },
+    {
+      "name": "My Family",
+      "rank": "webelos",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/my-family/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/01/2023_2024_loops_pins_My_Family.jpg"
+    },
+    {
+      "name": "My Safety",
+      "rank": "webelos",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/my-safety/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/02/2023_2024_loops_pins_My_Safety.jpg"
+    },
+    {
+      "name": "Stronger, Faster, Higher",
+      "rank": "webelos",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/stronger-faster-higher/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/01/2023_2024_loops_pins_Stronger_Faster_Higher.jpg"
+    },
+    {
+      "name": "Webelos Walkabout",
+      "rank": "webelos",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/webelos-walkabout/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/01/2023_2024_loops_pins_Webelos_Walkabout.jpg"
+    },
+    {
+      "name": "Aquanaut",
+      "rank": "webelos",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/aquanaut/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/01/2023_2024_loops_pins_Aquanaut.jpg"
+    },
+    {
+      "name": "Archery Webelos",
+      "rank": "webelos",
+      "source_url": "https://www.scouting.org/wp-content/uploads/2024/05/2024_Cub-Scout_Archery-Adventure-Lesson-Plan_051624.pdf#page=1",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/08/2023_2024_loops_pins_Archery-4.jpg"
+    },
+    {
+      "name": "Art Explosion",
+      "rank": "webelos",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/art-explosion/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/01/2023_2024_loops_pins_Art_Explosion.jpg"
+    },
+    {
+      "name": "Aware and Care",
+      "rank": "webelos",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/aware-and-care/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/01/2023_2024_loops_pins_Aware_and_Care.jpg"
+    },
+    {
+      "name": "BB Guns",
+      "rank": "webelos",
+      "source_url": "https://www.scouting.org/wp-content/uploads/2024/05/2024_Cub-Scout_BB-Adventure-Lesson-Plan_051724.pdf#page=1",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/08/2023_2024_loops_pins_BB_Guns-3.jpg"
+    },
+    {
+      "name": "Build It",
+      "rank": "webelos",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/build-it/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/01/2023_2024_loops_pins_Build_It.jpg"
+    },
+    {
+      "name": "Catch the Big One",
+      "rank": "webelos",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/catch-the-big-one/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/01/2023_2024_loops_pins_Catch_the_Big_One.jpg"
+    },
+    {
+      "name": "Champions for Nature Webelos",
+      "rank": "webelos",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/champions-for-nature-webelos/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/01/2023_2024_loops_pins_Champions_of_Nature-2.jpg"
+    },
+    {
+      "name": "Chef\u2019s Knife",
+      "rank": "webelos",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/chefs-knife/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/01/2023_2024_loops_pins_ChefsKnife.jpg"
+    },
+    {
+      "name": "Earth Rocks",
+      "rank": "webelos",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/earth-rocks/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/01/2023_2024_loops_pins_Earth_Rocks.jpg"
+    },
+    {
+      "name": "Let\u2019s Camp Webelos",
+      "rank": "webelos",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/lets-camp-webelos/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/01/2023_2024_loops_pins_Lets_Camp-3.jpg"
+    },
+    {
+      "name": "Math on the Trail",
+      "rank": "webelos",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/math-on-the-trail/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/01/2023_2024_loops_pins_Math_on_the_Trail.jpg"
+    },
+    {
+      "name": "Modular Design",
+      "rank": "webelos",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/modular-design/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/05/2023_2024_loops_pins_Modular_Design.jpg"
+    },
+    {
+      "name": "Paddle Onward",
+      "rank": "webelos",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/paddle-onward/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/01/2023_2024_loops_pins_Paddle_Onward.jpg"
+    },
+    {
+      "name": "Pedal Away",
+      "rank": "webelos",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/pedal-away/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/01/2023_2024_loops_pins_Pedal_Away.jpg"
+    },
+    {
+      "name": "Race Time Webelos",
+      "rank": "webelos",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/race-time-webelos/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/01/2023_2024_loops_pins_Race_Time-3.jpg"
+    },
+    {
+      "name": "Slingshot",
+      "rank": "webelos",
+      "source_url": "https://www.scouting.org/wp-content/uploads/2024/05/2024_Cub-Scout_Slingshot-Adventure-Lesson-Plan_051624.pdf#page=1",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/08/2023_2024_loops_pins_Slingshot-4.jpg"
+    },
+    {
+      "name": "Summertime Fun Webelos",
+      "rank": "webelos",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/summertime-fun-webelos/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/01/2023_2024_loops_pins_Summertime_Fun-2.jpg"
+    },
+    {
+      "name": "Tech on the Trail",
+      "rank": "webelos",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/tech-on-the-trail/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/01/2023_2024_loops_pins_Tech_on_the_Trail.jpg"
+    },
+    {
+      "name": "Yo-yo",
+      "rank": "webelos",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/yo-yo/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/01/2023_2024_loops_pins_Yo_Yo.jpg"
+    },
+    {
+      "name": "Bobcat",
+      "rank": "arrow_of_light",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/bobcat-aol/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/04/2023_2024_loops_pins_AOL_Bobcat_edit.jpg"
+    },
+    {
+      "name": "Citizenship",
+      "rank": "arrow_of_light",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/citizenship/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/04/2023_2024_loops_pins_Citizenship.jpg"
+    },
+    {
+      "name": "Duty to God",
+      "rank": "arrow_of_light",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/duty-to-god/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/04/2023_2024_loops_pins_AOL_Duty_to_God.jpg"
+    },
+    {
+      "name": "First Aid",
+      "rank": "arrow_of_light",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/first-aid/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/04/2023_2024_loops_pins_First_Aid.jpg"
+    },
+    {
+      "name": "Outdoor Adventurer",
+      "rank": "arrow_of_light",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/outdoor-adventurer/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/04/2023_2024_loops_pins_AOL_Outdoor_Adventurer.jpg"
+    },
+    {
+      "name": "Personal Fitness",
+      "rank": "arrow_of_light",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/personal-fitness/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/04/2023_2024_loops_pins_Personal_Fitness.jpg"
+    },
+    {
+      "name": "Archery Arrow of Light",
+      "rank": "arrow_of_light",
+      "source_url": "https://www.scouting.org/wp-content/uploads/2024/05/2024_Cub-Scout_Archery-Adventure-Lesson-Plan_051624.pdf#page=1",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/08/2023_2024_loops_pins_Archery-5.jpg"
+    },
+    {
+      "name": "BB Guns",
+      "rank": "arrow_of_light",
+      "source_url": "https://www.scouting.org/wp-content/uploads/2024/05/2024_Cub-Scout_BB-Adventure-Lesson-Plan_051724.pdf#page=1",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/08/2023_2024_loops_pins_BB_Guns-4.jpg"
+    },
+    {
+      "name": "Champions for Nature AOL",
+      "rank": "arrow_of_light",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/champions-for-nature-aol/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/05/2023_2024_loops_pins_Champions_of_Nature.jpg"
+    },
+    {
+      "name": "Cycling",
+      "rank": "arrow_of_light",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/cycling/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/05/2023_2024_loops_pins_Cycling.jpg"
+    },
+    {
+      "name": "Engineer",
+      "rank": "arrow_of_light",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/engineer/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/05/2023_2024_loops_pins_Engineering.jpg"
+    },
+    {
+      "name": "Estimations",
+      "rank": "arrow_of_light",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/estimations/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/05/2023_2024_loops_pins_Estimations.jpg"
+    },
+    {
+      "name": "Fishing",
+      "rank": "arrow_of_light",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/fishing/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/05/2023_2024_loops_pins_Fishing.jpg"
+    },
+    {
+      "name": "High Tech Outdoors",
+      "rank": "arrow_of_light",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/high-tech-outdoors/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/05/2023_2024_loops_pins_High_Tech_Outdoors.jpg"
+    },
+    {
+      "name": "Into the Wild",
+      "rank": "arrow_of_light",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/into-the-wild/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/05/2023_2024_loops_pins_Into_the_Wild.jpg"
+    },
+    {
+      "name": "Into the Woods",
+      "rank": "arrow_of_light",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/into-the-woods/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/05/2023_2024_loops_pins_Into_the_Woods.jpg"
+    },
+    {
+      "name": "Knife Safety",
+      "rank": "arrow_of_light",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/knife-safety/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/05/2023_2024_loops_pins_Knife_Safety.jpg"
+    },
+    {
+      "name": "Paddle Craft",
+      "rank": "arrow_of_light",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/paddle-craft/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/05/2023_2024_loops_pins_Paddle_Craft.jpg"
+    },
+    {
+      "name": "Race Time AOL",
+      "rank": "arrow_of_light",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/race-time-aol/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/05/2023_2024_loops_pins_Race_Time.jpg"
+    },
+    {
+      "name": "Slingshot",
+      "rank": "arrow_of_light",
+      "source_url": "https://www.scouting.org/wp-content/uploads/2024/05/2024_Cub-Scout_Slingshot-Adventure-Lesson-Plan_051624.pdf#page=1",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/08/2023_2024_loops_pins_Slingshot-5.jpg"
+    },
+    {
+      "name": "Summertime Fun AOL",
+      "rank": "arrow_of_light",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/summertime-fun-aol/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/05/2023_2024_loops_pins_Summertime_Fun.jpg"
+    },
+    {
+      "name": "Swimming",
+      "rank": "arrow_of_light",
+      "source_url": "https://www.scouting.org/cub-scout-adventures/swimming/",
+      "image_url": "https://www.scouting.org/wp-content/uploads/2024/05/2023_2024_loops_pins_Swimming.jpg"
+    }
+  ]
+}

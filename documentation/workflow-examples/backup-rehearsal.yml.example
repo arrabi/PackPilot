@@ -1,0 +1,77 @@
+name: Backup recovery rehearsal
+
+on:
+  # Bootstrap before merging the release system: only a fresh owner-applied
+  # label can run the exact PR snapshot. Later pushes do not reuse that approval.
+  pull_request:
+    types: [labeled]
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      backup_prefix:
+        description: Existing backups/CAPTURE-ID (blank captures a fresh production backup)
+        required: false
+        type: string
+
+permissions:
+  contents: read
+concurrency:
+  group: pack99-production-operations
+  cancel-in-progress: false
+
+jobs:
+  rehearse:
+    if: >-
+      github.actor == 'YOUR_GITHUB_OWNER' && github.repository == 'YOUR_GITHUB_OWNER/YOUR_GITHUB_REPOSITORY' &&
+      ((github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main') ||
+       (github.event_name == 'pull_request' && github.event.action == 'labeled' &&
+        github.event.label.name == 'rehearse-backup' &&
+        github.event.pull_request.head.repo.full_name == github.repository))
+    environment: ${{ github.event_name == 'pull_request' && 'backup-rehearsal' || 'production-backups' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - name: Install PostgreSQL 17 client
+        run: |
+          sudo install -d /usr/share/postgresql-common/pgdg
+          curl -fsSL https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo tee /usr/share/postgresql-common/pgdg/apt.postgresql.org.asc >/dev/null
+          . /etc/os-release
+          echo "deb [signed-by=/usr/share/postgresql-common/pgdg/apt.postgresql.org.asc] https://apt.postgresql.org/pub/repos/apt $VERSION_CODENAME-pgdg main" | sudo tee /etc/apt/sources.list.d/pgdg.list >/dev/null
+          sudo apt-get update -qq
+          sudo apt-get install -y postgresql-client-17 socat
+          echo /usr/lib/postgresql/17/bin >> "$GITHUB_PATH"
+      - run: pip install -r scripts/release/requirements.txt
+      - name: Install Supabase database CA for verified TLS
+        run: |
+          ca_file="$RUNNER_TEMP/pack99-supabase-ca-2021.crt"
+          curl --fail --silent --show-error --proto '=https' --tlsv1.2 'https://supabase-downloads.s3-ap-southeast-1.amazonaws.com/prod/ssl/prod-ca-2021.crt' --output "$ca_file"
+          openssl x509 -in "$ca_file" -noout -checkend 86400
+          openssl x509 -in "$ca_file" -noout -ext basicConstraints | grep -q 'CA:TRUE'
+          echo "PGSSLROOTCERT=$ca_file" >> "$GITHUB_ENV"
+      - name: Capture and restore privately without deploying
+        env:
+          BACKUP_PREFIX: ${{ inputs.backup_prefix }}
+          PRODUCTION_DATABASE_URL: ${{ secrets.PRODUCTION_DATABASE_URL }}
+          PRODUCTION_SUPABASE_URL: https://aaaaaaaaaaaaaaaaaaaa.supabase.co
+          PRODUCTION_SUPABASE_SERVICE_KEY: ${{ secrets.PRODUCTION_SUPABASE_SERVICE_KEY }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
+          R2_ENDPOINT: ${{ secrets.R2_ENDPOINT }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+        run: |
+          args=()
+          if [ -n "$BACKUP_PREFIX" ]; then args+=(--prefix "$BACKUP_PREFIX"); fi
+          python scripts/release/rehearse-backup.py "${args[@]}"
+      - name: Remove isolated database even after cancellation
+        if: always()
+        run: |
+          docker --host=unix:///var/run/docker.sock rm -fv pack99-recovery-rest pack99-recovery-auth 2>/dev/null || true
+          docker --host=unix:///var/run/docker.sock rm -fv pack99-backup-rehearsal 2>/dev/null || true
+      # No database dumps, private inventories, container logs or recovery bytes
+      # are uploaded as Actions artifacts. Evidence lives in private R2 only.

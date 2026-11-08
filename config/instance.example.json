@@ -1,0 +1,20 @@
+{
+  "production_project": "aaaaaaaaaaaaaaaaaaaa",
+  "staging_project": "bbbbbbbbbbbbbbbbbbbb",
+  "production_origin": "https://packpilot.example",
+  "staging_origin": "https://staging.packpilot.example",
+  "legacy_origin": "https://legacy.packpilot.example",
+  "production_pages": "packpilot-site",
+  "staging_pages": "packpilot-staging",
+  "cloudflare_account_id": "00000000000000000000000000000000",
+  "github_owner": "YOUR_GITHUB_OWNER",
+  "github_repository": "YOUR_GITHUB_REPOSITORY",
+  "admin_email": "admin@example.test",
+  "staging_email": "staging@example.test",
+  "recovery_email": "recovery@example.test",
+  "contact_email": "contact@example.test",
+  "national_registration_url": "https://example.test/national-registration",
+  "pack_registration_url": "https://example.test/pack-registration",
+  "registration_guide_url": "https://example.test/registration-guide",
+  "skills_survey_url": "https://example.test/skills-survey"
+}

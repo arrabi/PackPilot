@@ -2,7 +2,7 @@
 
 A self-hosted Cub Scout fieldbook for leaders and families, with authenticated MCP access for AI assistants.
 
-It tracks attendance, requirement progress, earned adventures, physical badge handouts, home assignments, messages, registration follow-ups and equipment. The application uses the same permissions for website and MCP access. It maintains its own records; it does not automatically synchronize with Scoutbook.
+It tracks attendance, requirement progress, earned adventures, physical badge handouts, home assignments, messages, registration follow-ups and equipment. The application uses the same permissions for website and MCP access. It maintains its own records; it does not automatically synchronize with Scoutbook, but can export data to be imported by Scoutbook.
 
 ## Sample screens
 

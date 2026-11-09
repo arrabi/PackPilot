@@ -4,11 +4,50 @@ A self-hosted Cub Scout fieldbook for leaders and families, with authenticated M
 
 It tracks attendance, requirement progress, earned adventures, physical badge handouts, home assignments, messages, registration follow-ups and equipment. The application uses the same permissions for website and MCP access. It maintains its own records; it does not automatically synchronize with Scoutbook.
 
+## Sample screens
+
+Explore the leader dashboard, progress recording, calendar, badge tracking, inventory and AI assistant prompts. Screenshots show PackPilot configured for Pack 99.
+
+<table>
+  <tr>
+    <th>Leader dashboard</th>
+    <th>Record progress</th>
+  </tr>
+  <tr>
+    <td><img src="documentation/screenshots/leader-dashboard.png" width="320" alt="Leader dashboard with actions to run a meeting, record progress, hand out badges and review family work"></td>
+    <td><img src="documentation/screenshots/record-progress.png" width="320" alt="Progress actions for requirements, adventures, parent assignments, badge handouts and corrections"></td>
+  </tr>
+  <tr>
+    <th>Choose an adventure</th>
+    <th>Review and save</th>
+  </tr>
+  <tr>
+    <td><img src="documentation/screenshots/choose-adventure.png" width="320" alt="Adventure selection showing badges and completion counts"></td>
+    <td><img src="documentation/screenshots/review-and-save.png" width="320" alt="Scout selection and review form with a completion date before saving an earned adventure"></td>
+  </tr>
+  <tr>
+    <th>Calendar</th>
+    <th>Progress by badge</th>
+  </tr>
+  <tr>
+    <td><img src="documentation/screenshots/calendar.png" width="320" alt="Monthly calendar with pack meetings, events, carpools and volunteer signups"></td>
+    <td><img src="documentation/screenshots/progress-by-badge.png" width="320" alt="Searchable badge progress showing the number of scouts who have earned each adventure"></td>
+  </tr>
+</table>
+
+**Gear and stock**
+
+<img src="documentation/screenshots/gear-and-stock.png" width="720" alt="Inventory dashboard for giving out items, lending equipment, recording returns and updating stock">
+
+**AI assistant prompts**
+
+<img src="documentation/screenshots/assistant-prompts.png" width="720" alt="Example Claude prompts for asking about the pack and recording attendance, progress and equipment returns">
+
 ## Status
 
 Developer-preview source candidate. The application architecture is unchanged: **Supabase Cloud + Cloudflare Pages + Google OAuth + Brevo**, with private off-site backup storage. No Docker, alternate authentication provider or generic SMTP transport is introduced.
 
-**Bundled roster/inventory/catalog examples are fictional. The catalog is not a set of official advancement requirements.** Badge artwork is referenced by official Scouting America image URLs; image files and copied requirement text are not distributed. Supply reviewed program content separately.
+**Bundled roster/inventory/catalog examples are fictional. The catalog is not a set of official advancement requirements.** The application references badge artwork through official Scouting America image URLs; standalone badge image files and copied requirement text are not distributed. The sample screenshots include the supplied instance’s branding and displayed badge artwork. Supply reviewed program content separately.
 
 ## Start here
 

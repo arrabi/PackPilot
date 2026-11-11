@@ -1,8 +1,31 @@
 # PackPilot
 
-A self-hosted Cub Scout fieldbook for leaders and families, with authenticated MCP access for AI assistants.
+A self-hosted Cub Scout fieldbook for leaders and families, with an in-app **Ask AI** assistant and authenticated MCP access for external AI assistants.
 
 It tracks attendance, requirement progress, earned adventures, physical badge handouts, home assignments, messages, registration follow-ups and equipment. The application uses the same permissions for website and MCP access. It maintains its own records; it does not automatically synchronize with Scoutbook, but can export data to be imported by Scoutbook.
+
+## Ask AI
+
+Ask questions about your den or request an update directly from the leader fieldbook. Open **Ask AI** from the homepage, header, or center action in the bottom navigation.
+
+- “Which badges are ready to hand out?” — see earned badges awaiting delivery.
+- “Who still needs Bobcat?” — check recorded advancement and requirements.
+- “Sam returned his neckerchief yesterday.” — find the matching loan and review the proposed return.
+
+Answers use the signed-in leader's permissions and current records. Requested changes appear in a review card and require an explicit **Save**; asking a question does not record a completion or badge handout. Family Hub does not expose the assistant.
+
+Ask AI uses OpenAI's Responses API. Configure your own server-side OpenAI key and model for each intended environment; see the [Ask AI guide](documentation/fieldbook-assistant.md) and [setup instructions](documentation/SETUP.md#optional-in-app-ask-ai). Provider keys stay out of the browser. External AI clients can still connect through the separate authenticated MCP interface.
+
+<table>
+  <tr>
+    <th>Open Ask AI</th>
+    <th>Check badge status</th>
+  </tr>
+  <tr>
+    <td><img src="documentation/screenshots/ask-ai-home.png" width="320" alt="Leader homepage showing the Ask AI button and center navigation action"></td>
+    <td><img src="documentation/screenshots/ask-ai-badge-status.png" width="320" alt="Ask AI answering which earned badges are ready to hand out, with scout names obscured"></td>
+  </tr>
+</table>
 
 ## Sample screens
 

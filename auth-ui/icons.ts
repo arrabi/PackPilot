@@ -1,6 +1,8 @@
 /** Small decorative icons. Visible labels always carry the meaning. */
 export function icon(name:string,className='ui-icon') {
  const paths:Record<string,string>={
+ lock:'<rect x="5" y="10" width="14" height="12" rx="2"/><path d="M8 10V6a4 4 0 0 1 8 0v4"/>',
+ notebook:'<rect x="5" y="2" width="16" height="20" rx="2"/><path d="M2 6h6M2 12h6M2 18h6"/>',
  home:'<path d="m3 10 9-7 9 7v11h-6v-7H9v7H3z"/>',
  book:'<path d="M12 5c-3-2-7-2-10 0v15c3-2 7-2 10 0 3-2 7-2 10 0V5c-3-2-7-2-10 0Zm0 0v15"/>',
  shield:'<path d="M12 2 3 6v6c0 5 9 10 9 10s9-5 9-10V6z"/><path d="m8 12 3 3 5-6"/>',

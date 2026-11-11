@@ -1,6 +1,10 @@
+import {assistantEnvironmentEnabled} from '../supabase/functions/_shared/assistant-environment.ts';
 import './back-navigation.css';
+import './assistant.css';
+import {assistantTransport} from './assistant-client.ts';
 import {isV2} from './v2-shell.ts';
 import './v2.css';
+import './notes.css';
 import './policy.css';
 import './app-shell.css';
 import {requirePolicies} from './policy-gate.ts';
@@ -32,6 +36,7 @@ if (!url || !key) {
     return data as T;
   }
   const service: PortalService = {
+    ...(assistantEnvironmentEnabled(import.meta.env.MODE)?{assistant:assistantTransport(client,url,key)}:{}),
     async identity() {
       const { data, error } = await client.auth.getUser();
       if (error || !data.user) return null;

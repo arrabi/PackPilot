@@ -22,12 +22,13 @@ export function decoratePrevious(root:HTMLElement) {
   if(raw.startsWith('/')&&!raw.startsWith('//'))a.setAttribute('href',prevPath(raw));
  }
 }
-export function v2Navigation(role:AppRole,active:string,context:AppContext,local=false) {
+export function v2Navigation(role:AppRole,active:string,context:AppContext,local=false,assistant=false) {
  const parent=role==='parent';
  const items=parent?[['home','Home','⌂','/parents'],['progress','My scouts','♙','/parents?section=progress'],['events','Events','▦','/events?parent=1'],['messages','Messages','☏','/parents?section=messages']]:[['home','Today','⌂','/#home'],['scouts','Scouts','♙','/#scouts'],['events','Events','▦','/events'],['more','More','•••','/#more']];
- return `<nav class="v2-bottom" aria-label="Main navigation">${items.map(([key,label,symbol,path])=>`<a href="${h(local&&path.startsWith('/#')?path.slice(1):v2Path(appLink(path,role,context)))}" ${active===key?'aria-current="page"':''}><span aria-hidden="true">${symbol}</span>${label}</a>`).join('')}</nav>`;
+ const showAssistant=assistant&&!parent;
+ return `<nav class="v2-bottom ${showAssistant?'has-assistant':''}" aria-label="Main navigation">${items.map(([key,label,symbol,path],i)=>`${showAssistant&&i===2?'<button type="button" class="v2-ai-action" data-action="assistant-open" aria-label="Ask AI" aria-haspopup="dialog"><span class="v2-ai-orb" aria-hidden="true">✦</span><span>Ask AI</span></button>':''}<a href="${h(local&&path.startsWith('/#')?path.slice(1):v2Path(appLink(path,role,context)))}" ${active===key?'aria-current="page"':''}><span aria-hidden="true">${symbol}</span>${label}</a>`).join('')}</nav>`;
 }
-export function decorateV2(root:HTMLElement,role:AppRole,active:string,context:AppContext,local=false) {
+export function decorateV2(root:HTMLElement,role:AppRole,active:string,context:AppContext,local=false,assistant=false) {
  // Family Hub has its own current design and five-tab navigation.
  if(role==='parent')return;
  root.classList.add('v2-interface');
@@ -49,7 +50,7 @@ export function decorateV2(root:HTMLElement,role:AppRole,active:string,context:A
 
  root.ownerDocument.body.classList.add('v2-body');
  for(const old of root.querySelectorAll('.v2-bottom,.app-navigation,.beta-bottom-nav'))old.remove();
- root.insertAdjacentHTML('beforeend',v2Navigation(role,active,context,local));
+ root.insertAdjacentHTML('beforeend',v2Navigation(role,active,context,local,assistant));
  for(const a of root.querySelectorAll<HTMLAnchorElement>('a[href]')) {
   const raw=a.getAttribute('href')!;if(!raw.startsWith('/')||raw.startsWith('//'))continue;
   a.setAttribute('href',v2Path(raw));
@@ -64,7 +65,7 @@ export function installV2Review(root:HTMLElement) {
   const form=(event.target as HTMLElement).closest<HTMLFormElement>('form[data-form],form[data-kind]');
   if(!form||!isV2(win))return;
   const kind=form.dataset.form||form.dataset.kind||'';
-  if(['email','code'].includes(kind)||!kind||form.querySelector('fieldset[disabled]'))return;
+  if(['email','code','note'].includes(kind)||!kind||form.querySelector('fieldset[disabled]'))return;
   if(confirmed.has(form)){confirmed.delete(form);return;}
   if(!form.checkValidity()){event.preventDefault();event.stopImmediatePropagation();form.reportValidity();return;}
   event.preventDefault();event.stopImmediatePropagation();

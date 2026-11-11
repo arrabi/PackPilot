@@ -27,6 +27,7 @@ def module(name, filename):
 restore = module('restore_local', 'restore-local.py')
 refresh = module('refresh_staging', 'refresh-staging.py')
 rehearsal = module('rehearse_backup', 'rehearse-backup.py')
+assistant_probe = module('assistant_probe', 'test-assistant.py')
 
 
 class ObjectStore:
@@ -73,6 +74,16 @@ def capture(directory):
 
 
 class ReleaseToolsTests(unittest.TestCase):
+    def test_assistant_probe_uses_the_current_server_key_with_legacy_fallback(self):
+        modern = {'type': 'secret', 'api_key': 'synthetic-modern'}
+        legacy = {'name': 'service_role', 'type': 'legacy', 'api_key': 'synthetic-legacy'}
+        public = {'name': 'default', 'type': 'publishable', 'api_key': 'synthetic-public'}
+        self.assertEqual(assistant_probe.staging_admin_key([public, legacy, modern]), 'synthetic-modern')
+        self.assertEqual(assistant_probe.staging_admin_key([modern]), 'synthetic-modern')
+        self.assertEqual(assistant_probe.staging_admin_key([public, legacy]), 'synthetic-legacy')
+        with self.assertRaisesRegex(RuntimeError, 'unavailable'):
+            assistant_probe.staging_admin_key([public])
+
     def test_rehearsal_diagnoses_database_errors_without_exposing_exception_details(self):
         import psycopg
         secret = 'credential-must-never-appear'

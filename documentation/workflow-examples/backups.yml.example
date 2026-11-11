@@ -79,4 +79,5 @@ jobs:
             python scripts/release/backup.py backup --alert-on-failure "${args[@]}"
             python scripts/release/backup.py cleanup --alert-on-failure
             python scripts/release/expire-records.py
+            python scripts/release/prune-assistant.py
           fi

@@ -21,3 +21,5 @@ The backend's SUPABASE_URL and platform keys are injected by Supabase. Configure
 Notifications still use BREVO_API_KEY, PACK99_DATABASE_KEY, PACK99_FROM_EMAIL and PACK99_DISPATCH_SECRET. PACK99_DELIVERY_PAUSED=true prevents sending. Set PACK99_AUTH_UI_ORIGIN to the matching website origin as well. For staging, PACK99_EMAIL_ALLOWLIST permits only the configured owned test inbox. Keep equivalent isolation for Auth-generated email.
 
 Operational backup/rehearsal utilities need PRODUCTION_DATABASE_URL with verified TLS, PRODUCTION_SUPABASE_SERVICE_KEY, R2_ENDPOINT, R2_ACCESS_KEY_ID and R2_SECRET_ACCESS_KEY, plus the Cloudflare account ID. Use a private Standard bucket with public access disabled. Never paste secret values into chat, source, issue text or ordinary Actions artifacts.
+
+Optional in-app Ask AI additionally uses server-only `OPENAI_API_KEY` and optional `OPENAI_MODEL` in each intended Supabase environment. See [the assistant guide](fieldbook-assistant.md). Do not place provider keys in instance.example.json or browser build variables.

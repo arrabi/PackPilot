@@ -1,5 +1,10 @@
 project_id = "packpilot"
 
+[functions.fieldbook-assistant]
+# Staging only. Application verifies the leader token and explicit approvals.
+verify_jwt = false
+entrypoint = "./functions/fieldbook-assistant/index.ts"
+
 [functions.staging-auth-email]
 # Staging only. The handler verifies Standard Webhooks signatures before parsing.
 verify_jwt = false

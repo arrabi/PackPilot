@@ -1,18 +1,24 @@
 import {prepareV2Routes} from '../scripts/prepare-v2-routes.ts';
 import { defineConfig, loadEnv } from "vite";
 import { fileURLToPath } from "node:url";
+import {readFileSync} from 'node:fs';
 import {execFileSync} from 'node:child_process';
-export default defineConfig(({mode}) => {
+export default defineConfig(({mode,command}) => {
  const staging = mode === 'staging';
  let commit = 'development';
- try { commit = execFileSync('git', ['rev-parse', 'HEAD'], {cwd:fileURLToPath(new URL('..', import.meta.url)),encoding:'utf8'}).trim(); } catch { /* Unpacked source can still be built locally. */ }
+ try { const root=fileURLToPath(new URL('..', import.meta.url)).replace(/\/$/,''); const gitRoot=execFileSync('git',['rev-parse','--show-toplevel'],{cwd:root,encoding:'utf8'}).trim(); if(gitRoot===root)commit=execFileSync('git',['rev-parse','HEAD'],{cwd:root,encoding:'utf8'}).trim(); } catch { /* Unpacked source can still be built locally. */ }
  const release = /^[a-f0-9]{40}$/.test(commit) ? commit.slice(0,12) : 'development';
+ const version=JSON.parse(readFileSync(new URL('../package.json',import.meta.url),'utf8')).version as string;
+ const builtAt=new Date().toISOString();
+ const environment=command==='serve'?'development':staging?'staging':'production';
+ const buildInfo={version,commit,builtAt,environment};
  const env = loadEnv(mode, fileURLToPath(new URL('.', import.meta.url)), 'VITE_');
  if(staging){
   if(!/^https:\/\/[a-z]{20}\.supabase\.co$/.test(env.VITE_SUPABASE_URL || '') || env.VITE_SUPABASE_URL.includes('aaaaaaaaaaaaaaaaaaaa'))throw Error('Staging requires an explicit isolated Supabase URL');
   if(!env.VITE_SUPABASE_PUBLISHABLE_KEY?.startsWith('sb_publishable_'))throw Error('Staging requires an explicit publishable browser key');
  }
  return {
+  define:{__APP_BUILD__:JSON.stringify(buildInfo)},
   plugins: [
     {
       name: 'staging-identity',
@@ -24,7 +30,7 @@ export default defineConfig(({mode}) => {
         }
       },
       transformIndexHtml(html) {
-        html = html.replace('</head>',`<meta name="pack99-release" content="${release}"></head>`);
+        html = html.replace('</head>',`<meta name="pack99-release" content="${release}"><meta name="pack99-version" content="${version}"><meta name="pack99-built-at" content="${builtAt}"><meta name="pack99-environment" content="${environment}"></head>`);
         if(!staging)return html;
         return html.replace(/<title>/i,'<title>[STAGING] ')
           .replace(/<link\b[^>]*rel=["'](?:shortcut )?icon["'][^>]*>/gi,'')

@@ -1,7 +1,7 @@
 import {takeScenarioNotice} from '../auth-ui/scenario-navigation.ts';
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
-import {Window} from 'happy-dom';
+import {Window,type HTMLButtonElement,type HTMLTextAreaElement} from 'happy-dom';
 import {mountPortal, type Entry, type PortalService} from '../auth-ui/portal-ui.ts';
 import {mountParents} from '../auth-ui/parents-ui.ts';
 import {mountWorkspace} from '../auth-ui/workspace-ui.ts';
@@ -117,4 +117,36 @@ test('silent bulk homework applies one choice to every selected scout and requir
   app.root.querySelector('form[data-form=adventure]')!.dispatchEvent(new app.win.Event('submit',{bubbles:true,cancelable:true}));(app.root.querySelector('[data-notify-parents]')as any).checked=false;app.click('[data-confirm-review]');await flush();await flush();
   assert.equal(calls.length,1);assert.equal(calls[0].length,4);assert.ok(calls[0].every(e=>e.command.notify_parents===false));assert.equal(app.win.location.hash,'#home');
  }finally{app.close();}
+});
+
+test('staging assistant opens from the raised center nav and Home CTA, retaining the current conversation',async()=>{
+ const app=await portal('/#home',true,{assistant:async()=>({message:'There are 2 scouts.'})});
+ try{
+  const nav=app.root.querySelector('.v2-bottom')!;
+  assert.deepEqual([...nav.children].map(e=>e.textContent?.replace(/[⌂♙▦•✦]/g,'').trim()),['Today','Scouts','Ask AI','Events','More']);
+  assert.equal(app.root.querySelector('.assistant-launch strong')?.textContent,'Ask AI');
+  app.click('.v2-ai-action');await flush();
+  assert(app.win.document.querySelector('dialog[open]'));
+  const text=app.win.document.querySelector('textarea')!;text.value='How many scouts?';text.dispatchEvent(new app.win.Event('input',{bubbles:true}));app.win.document.querySelector<HTMLButtonElement>('[aria-label="Send message"]')!.click();await flush();
+  app.win.document.querySelector<HTMLButtonElement>('[data-assistant-action=close]')!.click();
+  app.click('.assistant-launch');await flush();
+  assert.match(app.win.document.querySelector('.assistant-transcript')!.textContent!,/There are 2 scouts/);
+  app.win.document.querySelector<HTMLButtonElement>('[data-assistant-action=close]')!.click();app.go('scouts');
+  assert(app.root.querySelector('.v2-ai-action'));assert.equal(app.root.querySelector('.assistant-launch'),null);
+ }finally{app.close();}
+});
+
+test('Events AI navigation loads authorized scout portraits, preserves context and disposes on sign-out',async()=>{
+ const win=new Window({url:'https://example.test/events?den=0-Lions&year=2026-27'});win.document.body.innerHTML='<div id="app"></div>';const root=win.document.getElementById('app')!;
+ const calls:Record<string,unknown>[]=[];let signOut!:()=>void;
+ const portrait='data:image/png;base64,c3ludGhldGlj';
+ const app=mountWorkspace(root as any,{assistantEmail:'synthetic@example.test',assistant:async input=>{calls.push(input);return{message:'One scout needs Bobcat.',card:{kind:'results',title:'Scouts needing Bobcat',items:[{label:'Maya Test',detail:'Lions',scout_id:'one'}]}};},rpc:async<T>(name:string)=>(name==='read_scout_photos'?[{scout_id:'one',image:portrait}]:{leader:true,can_record:true,is_admin:false,user_id:'leader',scouts:[],events:[],jobs:[],signups:[],bookings:[],volunteers:[],meetings:[],photos:[{scout_id:'one',kind:'family',image:'family-photo-must-not-be-used'}],adventures:[]}) as T,onSignOut(fn){signOut=fn;return()=>{};}},'events');
+ try{
+  await app.ready;root.querySelector<HTMLButtonElement>('.v2-ai-action')!.click();await flush();
+  const text=win.document.querySelector<HTMLTextAreaElement>('dialog textarea')!;text.value='Who needs Bobcat?';text.dispatchEvent(new win.Event('input',{bubbles:true}));win.document.querySelector<HTMLButtonElement>('[aria-label="Send message"]')!.click();await flush();
+  assert.deepEqual(calls[0].context,{den:'0-Lions',year:'2026-27'});
+  assert.equal(win.document.querySelector('.assistant-result img')?.getAttribute('src'),portrait);
+  assert(!win.document.querySelector('dialog')!.innerHTML.includes('family-photo-must-not-be-used'));
+  signOut();assert.equal(win.document.querySelector('dialog'),null);
+ }finally{app.dispose();win.happyDOM.abort();}
 });

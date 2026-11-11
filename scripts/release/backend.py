@@ -143,7 +143,16 @@ def deploy_functions(project, root, *, staging=False, archive=None):
                 or not all(flag in entry.read_text() for flag in ('PACK99_DELIVERY_PAUSED', 'PACK99_ENVIRONMENT', 'PACK99_EMAIL_ALLOWLIST'))):
             raise RuntimeError('Staging requires a recipient-gated, pause-aware backend source')
     outcomes = []
-    for slug in SLUGS + (('staging-auth-email',) if staging else ()):
+    assistant = (Path(root) / 'supabase/functions/fieldbook-assistant/index.ts').is_file()
+    # Older rollback sources predate this optional function. Restore its absence
+    # instead of leaving a newer active endpoint behind the older application.
+    if not assistant:
+        remote = supabase('/v1/projects/' + project + '/functions')
+        if any(item['slug'] == 'fieldbook-assistant' for item in remote):
+            supabase('/v1/projects/' + project + '/functions/fieldbook-assistant', method='DELETE')
+            print('Removed assistant endpoint absent from selected backend source')
+    slugs = SLUGS + (('staging-auth-email',) if staging else ()) + (('fieldbook-assistant',) if assistant else ())
+    for slug in slugs:
         with tempfile.TemporaryDirectory(prefix='pack99-edge-') as temp:
             path = Path(temp) / 'index.ts'
             bundle(root, slug, path)

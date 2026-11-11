@@ -81,3 +81,11 @@ The roster importer expects the [example non-health columns](../examples/README.
 Establish private backups, readback/freshness checks, an isolated restore rehearsal and independent recovery access before importing real family data. Read ReleaseRunbook.md. The deployment/backup workflow examples in documentation/workflow-examples/ are inactive and require your instance settings and review; the original live-instance adoption/acceptance records do not belong here.
 
 Before enabling notification scheduling, verify the intended sender, recipients, links and outbox state using owned test identities. Keep delivery paused while doing setup. scripts/deploy-notification-scheduler.py supports an explicit --apply step after operator review; it enables the five-minute schedule. It is not a test message sender and must not be invoked with arbitrary live credentials. Never invoke an authenticated dispatcher merely to test deployment.
+
+## Optional in-app Ask AI
+
+After configuring your own independent instance, apply the new assistant and personal-notes migrations in order. Deploy `fieldbook-assistant` using the same explicit project reference and origin/environment guards as the other functions. Set `OPENAI_API_KEY` in that project's server-side secret store and optionally `OPENAI_MODEL` (default `gpt-4.1-mini`). The model must support Responses API function calling. Never set this key in Vite/browser variables. Each environment needs its own configuration; missing configuration fails after authentication.
+
+Read [the assistant guide](fieldbook-assistant.md) before enabling real use: operational fields needed for a question are sent to OpenAI, and proposed writes require an explicit user review/save. Family Hub does not expose the assistant. Use fictional data for validation. Configure the retention job described in `scripts/release/assistant-retention.sql` through your own reviewed backup workflow. The bundled examples do not activate a schedule or publish a deployment.
+
+Home → **My Notes** opens the author's private notebook. Existing den notes remain available; administrators cannot read someone else's note or note history through the application. See [My Notes](my-notes.md).

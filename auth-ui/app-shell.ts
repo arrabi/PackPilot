@@ -1,3 +1,4 @@
+import {buildDetails,currentBuildInfo,type BuildInfo} from './build-info.ts';
 import {icon} from './icons.ts';
 import{escapeHtml as h,todayLA}from'./portal-model.ts';
 export type AppRole='leader'|'parent';
@@ -21,7 +22,7 @@ export function renderNavigation(role:AppRole,active:string,context:AppContext,a
  }).join('')}</nav>`;
 }
 export function accountBar(role:AppRole,identity='',preview=false){return`<div class="app-account"><span>${preview?'Read-only administrator preview':role==='parent'?'Parent portal':'Leader portal'}${identity?' · '+h(identity):''}</span>${preview?'<a href="/admin?tab=access">Exit preview</a>':'<button type="button" class="secondary" data-app-signout>Sign out</button>'}</div>`;}
-export function appFooter(){return`<footer class="app-footer"><a href="/terms">Terms of Use</a><a href="/privacy">Privacy Policy</a><a href="mailto:contact@example.test">Help / contact Cubmaster</a></footer>`;}
+export function appFooter(build:BuildInfo|undefined=currentBuildInfo()){return`<footer class="app-footer"><a href="/terms">Terms of Use</a><a href="/privacy">Privacy Policy</a><a href="mailto:contact@example.test">Help / contact Cubmaster</a>${buildDetails(build)}</footer>`;}
 export function helpPanel(role:AppRole){return`<section class="item-card help-panel"><h2>Need a hand?</h2><p>${role==='parent'?'Use the email registered with the pack. If a child is missing, ask the Cubmaster to verify your family links. Registration marked “Needs verification” may already have been submitted; ask your den leader to confirm it.':'Choose your den and program year first. Use Events to open a meeting, plan privately, take attendance and review actual completed requirements. Account and family-access changes are managed by administrators.'}</p><a href="mailto:contact@example.test">Email contact@example.test</a><p>Email notification preferences are managed by the administrator. You can request an opt-out at the same address.</p></section>`;}
 function detailsKey(el:HTMLDetailsElement){return el.dataset.stateKey||el.id||((el.closest('article[id]')?.id||el.closest('form')?.getAttribute('data-id')||'')+':'+(el.querySelector('summary')?.textContent||'').trim());}
 export function captureView(root:HTMLElement){const win=root.ownerDocument.defaultView!,active=root.ownerDocument.activeElement as HTMLInputElement;const form=active?.closest<HTMLFormElement>('form');return{open:[...root.querySelectorAll<HTMLDetailsElement>('details[open]')].map(detailsKey),focus:active&&root.contains(active)?{id:active.id,name:active.name,kind:form?.dataset.kind||form?.dataset.form,formId:form?.dataset.id||form?.dataset.scout||'',start:active.selectionStart,end:active.selectionEnd}:null,scroll:win.scrollY};}

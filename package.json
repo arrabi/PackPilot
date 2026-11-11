@@ -10,7 +10,7 @@
     "test": "node --import tsx --test --experimental-test-isolation=none --test-concurrency=1 tests/*.test.ts",
     "typecheck": "tsc --noEmit",
     "check": "npm run typecheck && npm test && npm run check:edge && npm run build:auth",
-    "check:edge": "deno check --config supabase/functions/deno.json supabase/functions/scouts-mcp/index.ts supabase/functions/parent-notifications/index.ts supabase/functions/notification-links/index.ts supabase/functions/staging-auth-email/index.ts",
+    "check:edge": "deno check --config supabase/functions/deno.json supabase/functions/scouts-mcp/index.ts supabase/functions/parent-notifications/index.ts supabase/functions/notification-links/index.ts supabase/functions/staging-auth-email/index.ts supabase/functions/fieldbook-assistant/index.ts",
     "verify:import": "tsx scripts/verify-import.ts",
     "dev:auth": "vite --host 127.0.0.1 auth-ui --config auth-ui/vite.config.ts",
     "build:auth": "npm run generate:policies && vite build auth-ui --config auth-ui/vite.config.ts",

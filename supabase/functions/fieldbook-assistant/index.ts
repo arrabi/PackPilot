@@ -1,0 +1,11 @@
+import {assistantEnvironmentEnabled} from '../_shared/assistant-environment.ts';
+import {createAssistantHandler} from '../_shared/assistant.ts';
+import {deploymentOrigins} from '../_shared/deployment-origins.ts';
+import {createAssistantSelfTest} from '../_shared/assistant-self-test.ts';
+const supabaseUrl=Deno.env.get('SUPABASE_URL')??'';
+const environment=Deno.env.get('PACK99_ENVIRONMENT');
+const {allowedOrigins}=deploymentOrigins(supabaseUrl,environment,Deno.env.get('AUTH_UI_ORIGIN'));
+const apiKey=Deno.env.get('OPENAI_API_KEY'),model=Deno.env.get('OPENAI_MODEL')??'gpt-4.1-mini';
+const handler=createAssistantHandler({supabaseUrl,publishableKey:Deno.env.get('APP_SUPABASE_PUBLISHABLE_KEY')??Deno.env.get('SUPABASE_ANON_KEY')??'',origins:allowedOrigins,enabled:assistantEnvironmentEnabled(environment),apiKey,model});
+const selfTest=createAssistantSelfTest({enabled:assistantEnvironmentEnabled(environment),serviceKey:Deno.env.get('SUPABASE_SERVICE_ROLE_KEY'),apiKey,model});
+Deno.serve(req=>new URL(req.url).pathname.endsWith('/self-test')?selfTest(req):handler(req));

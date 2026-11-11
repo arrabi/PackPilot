@@ -26,6 +26,10 @@
 .v2-bottom { position:fixed; bottom:0; left:0; right:0; margin:auto; display:grid; grid-template-columns:repeat(4,1fr); max-width:1048px; z-index:30; padding:8px 20px max(8px,env(safe-area-inset-bottom)); background:#faf8f2f5; backdrop-filter:blur(10px); border-top:1px solid #c8cfbe; }
 .v2-bottom a { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:5px; padding:9px; border-radius:14px; text-decoration:none; font-size:.8rem; font-weight:650; min-height:60px; }
 .v2-bottom a>span { font-size:1.4rem; line-height:1; }
+.v2-bottom.has-assistant { grid-template-columns:repeat(5,minmax(0,1fr)); }
+.v2-bottom .v2-ai-action { display:flex; flex-direction:column; align-items:center; justify-content:flex-end; gap:5px; padding:0 0 9px; min-width:0; min-height:60px; border:0; border-radius:14px; background:transparent; color:#183f35; font:inherit; font-size:.8rem; font-weight:650; cursor:pointer; }
+.v2-ai-orb { display:grid; place-items:center; width:54px; height:54px; margin-top:-24px; border:4px solid #faf8f2; border-radius:50%; background:#183f35; color:#e8c779; font-size:1.8rem; box-shadow:0 3px 10px #183f3526; }
+.v2-bottom .v2-ai-action:focus-visible { outline:3px solid #bd8c3d; outline-offset:2px; }
 .v2-bottom a[aria-current] { background:#e4edd6; }
 .v2-actions,.v2-scout-grid,.v2-badge-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; margin:0 0 22px; }
 .v2-action { display:grid; grid-template-columns:1fr auto; text-align:left; padding:24px; gap:8px; min-height:176px; border:1px solid transparent; border-radius:18px; color:#183f35; text-decoration:none; }

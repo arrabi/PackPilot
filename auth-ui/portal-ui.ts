@@ -1,4 +1,6 @@
 import {backLabel} from './back-navigation.ts';
+import {createAssistantPanel} from './assistant-ui.ts';
+import type {AssistantTransport} from '../supabase/functions/_shared/assistant-types.ts';
 import {familyWorkCards,familyWorkStatus} from './family-work-ui.ts';
 import {familyWorkOverview} from './family-work-overview.ts';
 import {returnHomeAfterScenario,takeScenarioNotice} from './scenario-navigation.ts';
@@ -48,6 +50,7 @@ export interface Entry {
 }
 export interface SaveReceipt { notificationsQueued: number }
 export interface PortalService {
+  assistant?: AssistantTransport;
   identity(): Promise<{ email: string } | null>;
   capabilities(): Promise<{ approved: boolean; can_record: boolean; is_admin?: boolean; default_den?: string | null }>;
   load(year: string): Promise<PortalData>;
@@ -121,6 +124,7 @@ const text = (form: FormData, key: string) =>
 const count = (form: FormData, key: string) => Number(text(form, key));
 
 export function mountPortal(root: HTMLElement, service: PortalService, options: { beta?: boolean } = {}) {
+  let assistantPanel:ReturnType<typeof createAssistantPanel>|null=null;
   const beta = options.beta !== false;
   const v2 = isV2(root.ownerDocument.defaultView!);
   const removeReview = v2 ? installV2Review(root) : ()=>{};
@@ -731,13 +735,17 @@ export function mountPortal(root: HTMLElement, service: PortalService, options: 
       const main=root.querySelector<HTMLElement>('#workspace')!,filters=root.querySelector('.filter-bar')!;
       const header=doc.createElement('header');header.className='v2-header';
       header.innerHTML=`<a class="v2-brand" href="#home">${packLogo}<span>PackPilot <small>Fieldbook</small></span></a><details class="v2-context"><summary>${h(den?denName(den):'All dens')} · ${h(year)}</summary></details>`;
+      if(service.assistant){
+        header.insertAdjacentHTML('beforeend','<button class="assistant-header-button" data-action="assistant-open" aria-label="Ask AI">✦ Ask</button>');
+        if(view==='home'&&!loading)main.querySelector('.page-heading')?.insertAdjacentHTML('afterend','<button class="assistant-launch" data-action="assistant-open"><span aria-hidden="true">✦</span><span><strong>Ask AI</strong><small>Ask a question or record an update</small></span><span aria-hidden="true">→</span></button>');
+      }
       header.querySelector('details')!.append(filters);
       const wrapper=doc.createElement('div');wrapper.className='v2-portal';wrapper.append(header,main);root.replaceChildren(wrapper);
       for(const toggle of root.querySelectorAll('[data-action=progress-classic],[data-action=progress-guided]'))toggle.remove();
       root.classList.toggle('v2-focused',['adventures','attendance'].includes(view));
       if(['adventures','attendance'].includes(view))main.insertAdjacentHTML('afterbegin',`<a class="back-link back-button" href="#home">${backLabel("Today")}</a>`);
       main.insertAdjacentHTML('beforeend',`<div class="v2-account">${accountBar('leader',email)}${appFooter()}</div>`);
-      decorateV2(root,'leader',['scouts','profile','badges'].includes(view)?'scouts':view==='home'?'home':'more',{year,den,child:''},true);
+      decorateV2(root,'leader',['scouts','profile','badges'].includes(view)?'scouts':view==='home'?'home':'more',{year,den,child:''},true,!!service.assistant);
     }
     if(!v2)decoratePrevious(root);
     restoreView(root,preservedView);if(noticeKind==='error')root.querySelector<HTMLElement>('[role=alert]')?.focus({preventScroll:true});const task=(route()as any).item;if(task){const el=doc.getElementById(task);if(el&&root.contains(el)){const details=el.closest('details');if(details)details.open=true;el.classList.add('task-focus');el.setAttribute('tabindex','-1');el.scrollIntoView?.({block:'center'});}}
@@ -830,6 +838,7 @@ export function mountPortal(root: HTMLElement, service: PortalService, options: 
       : "We could not reach the fieldbook. Check your connection and retry.";
   }
   function clearAccess(message = "") {
+    assistantPanel?.dispose();assistantPanel=null;
     epoch++;
     approved = false;
     canRecord = false;
@@ -1240,6 +1249,11 @@ export function mountPortal(root: HTMLElement, service: PortalService, options: 
     );
     if (!button || button.hasAttribute("disabled")) return;
     const action = button.hasAttribute("data-app-signout")?"logout":button.dataset.action;
+    if(action==='assistant-open'&&service.assistant){
+      if(!approved||loading||pending||busy||!abandonDraft())return;
+      assistantPanel??=createAssistantPanel(doc,service.assistant,()=>({den,year,email}),()=>{void load();},id=>data.photos?.find(p=>p.scout_id===id)?.image);
+      await assistantPanel.open();return;
+    }
     if (beta && ["logout", "refresh", "home-den", "plan-adventure", "open-activity"].includes(action || "") && !abandonDraft()) return;
     try {
       if(v2 && action?.startsWith('v2-')) {
@@ -1626,6 +1640,7 @@ export function mountPortal(root: HTMLElement, service: PortalService, options: 
   return {
     ready,
     dispose() {
+      assistantPanel?.dispose();
       disposed = true;
       removeReview();
       if(familyTimer!==null)win.clearInterval(familyTimer);

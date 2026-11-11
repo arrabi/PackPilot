@@ -1,0 +1,22 @@
+.my-notes-link>.ui-icon{width:32px;height:32px;flex:none}
+.my-notes-page .workspace-main{max-width:780px}
+.my-notes-page .workspace-main>.back-link{display:inline-flex;margin:0 0 18px}
+.my-notes-page .page-heading h1{display:flex;align-items:center;gap:14px}
+.my-notes-page .page-heading h1 .ui-icon{width:32px;height:36px}
+.my-notes-page .page-heading .eyebrow{display:none}
+.my-notes-page .workspace-body{display:block;min-inline-size:0}
+.my-notes-privacy{display:flex;align-items:center;gap:18px;padding:16px 20px;border-radius:14px;background:#e4eddc;margin-bottom:22px}
+.my-notes-privacy>.ui-icon{width:28px;height:32px;flex:none}
+.my-notes-privacy p{margin:0;line-height:1.5}
+.my-notes-page .my-notes-form{display:grid;gap:12px}
+.my-notes-page .my-notes-form>label{margin:0;font-size:16px}
+.my-notes-page .my-notes-form>textarea{min-height:320px;min-height:clamp(280px,42dvh,540px);resize:vertical;border-radius:12px;padding:16px;font-size:16px;line-height:1.6;background:#fffefb}
+.my-notes-page textarea:focus-visible{outline:3px solid #bd8c3d;outline-offset:2px}
+.my-notes-page textarea::placeholder{color:#657166;opacity:1}
+.my-notes-meta{display:flex;justify-content:space-between;gap:12px;min-height:24px;font-size:13px;color:#5a6b5f}
+.my-notes-actions{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:12px 0}
+.my-notes-actions .button{width:100%}
+.my-notes-previous{margin-top:28px;border-top:1px solid #d9ddd1;padding-top:12px}
+.my-notes-previous>details{margin:16px 0}
+.my-notes-page .workspace-shell{padding-bottom:0}
+@media(max-width:600px){.v2-interface.my-notes-page .workspace-main{padding:20px 16px}.my-notes-privacy{padding:14px;gap:14px}.my-notes-meta{font-size:12px}}
